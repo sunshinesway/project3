@@ -1,11 +1,11 @@
 //practice creating and using Mergesort and Quicksort in cpp
 
-void main() {
+int main() {
     int arr[]={10,34,664,1,98,235,87,111,45};
-    mergeSort(arr, arr[0], arr[arr.length - 1])
+    mergeSort(arr, arr[0], arr[(arr.length - 1)]);
 }
 
-void merge([int] arr, int b, int c, int r) {
+void merge(int arr[], int b, int c, int r) {
     int nL = c - b + 1;
     int nR = r - c;
 
@@ -45,7 +45,7 @@ void merge([int] arr, int b, int c, int r) {
     }
 }
 
-void mergeSort([int] arr, int b, int r) {
+void mergeSort(int arr[], int b, int r) {
     if (b >= r)
         return;
 
