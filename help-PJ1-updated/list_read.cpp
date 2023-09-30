@@ -6,8 +6,11 @@
 
 // Print the List contents
 void listPrint(LIST *List) {
+    // start with head of List
     NODE *pNODE = List->head;
-    while (pNODE) {
+
+    //iterate through list, print each key
+    while (pNODE != NULL) {
         printf("%lf\n", pNODE->key);
         pNODE = pNODE->next;
     }
@@ -15,10 +18,12 @@ void listPrint(LIST *List) {
 
 // Find the maximum key in List
 double listMax(LIST *List) {
+    // start with head of List and second node to do first comparison
     double max = List->head->key;
     NODE *pNODE = List->head->next;
 
-    while (pNODE) {
+    //iterate through entire List, compare key values, keeping track of current max key
+    while (pNODE != NULL) {
         if (pNODE->key > max) {
             max = pNODE->key;
         }
