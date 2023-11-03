@@ -49,16 +49,16 @@ void heapsort(HEAP *heap) {
     }
 
 }
-int heap_min(HEAP *heap) {
+double heap_min(HEAP *heap) {
     return heap->A[0]->key;
 }
-int heap_extract_min(HEAP *heap){
+double heap_extract_min(HEAP *heap){
     if (heap->size < 1) {
         fprintf(stderr, "Error: heap empty\n");
-        return 99999999;
+        return 2147483648;
     }
     else {
-        int minimum = heap->A[0]->key;
+        double minimum = heap->A[0]->key;
         heap->A[0] = heap->A[heap->size];
         heap->size--;
         min_heapify(heap, 0);
@@ -66,8 +66,8 @@ int heap_extract_min(HEAP *heap){
     }
 }
 
-void heap_decrease_key(HEAP *heap, int elem, int key) {
-    if (key < heap->A[elem])
+void heap_decrease_key(HEAP *heap, int elem, double key) {
+    if (key < heap->A[elem]->key)
         fprintf(stderr, "Error: heap empty\n");
     else {
         heap->A[elem]->key = key;
@@ -80,7 +80,7 @@ void heap_decrease_key(HEAP *heap, int elem, int key) {
     }
 }
 
-void min_heap_insert(HEAP *heap, int key) {
+void min_heap_insert(HEAP *heap, double key) {
     heap->size++;
     int i = heap->size;
 
