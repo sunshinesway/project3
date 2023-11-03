@@ -1,30 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits>
 #include <string.h>
 #include "util.h"
 #include "heap.h"
 #include "data_structures.h"
 
+//approximation of infinity for double val
+double infinity = std::numeric_limits<double>::infinity();
 
 void min_heapify(HEAP *heap, int elementIndex) {
-    //return if Element is null
+    //return if Element @elementIndex is null
     ELEMENT *element = heap->A[elementIndex];
     if(!element)
         return;
 
+    //set current element to smallest
     ELEMENT *smallestKey = element;
-    int smallIndex = 0;
+    int smallIndex;
+    //create ELEMENT objects for children of current
     ELEMENT *leftC = heap->A[elementIndex*2];
     ELEMENT *rightC = heap->A[elementIndex*2 + 1];
 
+    //if to check leftChild key is smaller than current
     if(leftC != NULL && leftC->key < element->key) {
         *smallestKey = *leftC;
         smallIndex = elementIndex*2;
     }
+    //if to check leftChild key is smaller than current or LeftChild
     if(rightC != NULL && rightC->key < smallestKey->key) {
         *smallestKey = *rightC;
         smallIndex = elementIndex*2 + 1;
     }
+    //if smallestKey was updated to L or R child, swap and update heap
+    //if current smaller than children, end function w/o action
     if(smallestKey->key != element->key)  {
         swap(heap, elementIndex, smallIndex);
         min_heapify(heap, smallIndex);
@@ -33,45 +42,61 @@ void min_heapify(HEAP *heap, int elementIndex) {
 }
 
 void build_min_heap(HEAP *heap) {
+    //update heap-size by size of current array, div by size of each element
+    //to get integer
     heap->size = sizeof(heap->A) / sizeof(ELEMENT);
-    for (int i = 0; i <= (heap->size/2; i++)) {
+    //loop through unheight of heap to heapify
+    for (int i = 0; i <= (heap->size/2); i++) {
         min_heapify(heap, i);
     }
 }
 
 void heapsort(HEAP *heap) {
+    //may remove if build-heap can be added at different time in program
     build_min_heap(heap);
+    //loop through heap, swapping values as needed to sort ascending order
+    //heapify to maintain heap as elements removed and heapsize updated
     int arrayLength = heap->size;
     for (int i = 0; i < arrayLength; i++) {
         swap(heap, 0, i);
         heap->size--;
         min_heapify(heap, i);
     }
-
 }
+//easypeasylemonsqueezy
+//if this fn fails I might drop out
 double heap_min(HEAP *heap) {
     return heap->A[0]->key;
 }
+
 double heap_extract_min(HEAP *heap){
+    //return max double val(infinity) with error mess. if heap empty
     if (heap->size < 1) {
         fprintf(stderr, "Error: heap empty\n");
-        return 2147483648;
+        return infinity;
     }
     else {
+        //min is first val in heap
         double minimum = heap->A[0]->key;
+        //make last item in heap top of heap
         heap->A[0] = heap->A[heap->size];
+        //reduce heap size
         heap->size--;
+        //update heap to maintain after rem. min
         min_heapify(heap, 0);
         return minimum;
     }
 }
 
-void heap_decrease_key(HEAP *heap, int elem, double key) {
-    if (key < heap->A[elem]->key)
+void heap_decrease_key(HEAP *heap, int elem, double newKey) {
+    //error mess. if new key not less than current
+    //to decrease key you must have a decreased key
+    if (newKey > heap->A[elem]->key)
         fprintf(stderr, "Error: heap empty\n");
     else {
-        heap->A[elem]->key = key;
-
+        //update key value
+        heap->A[elem]->key = newKey;
+        //swap values in heap to maintain with new key value
         int parent = elem/2;
         while(elem > 1 && heap->A[parent]->key > heap->A[elem]->key ) {
             swap(heap, parent, elem);
@@ -81,10 +106,12 @@ void heap_decrease_key(HEAP *heap, int elem, double key) {
 }
 
 void min_heap_insert(HEAP *heap, double key) {
+    //increase heap size
     heap->size++;
     int i = heap->size;
-
-    heap->A[i]->key = -2147483648;
+    //make new element key as high as possible
+    //call decrease key to maintain heap structure
+    heap->A[i]->key = infinity;
     heap_decrease_key(heap, i, key);
 
 }

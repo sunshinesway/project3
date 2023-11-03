@@ -3,10 +3,35 @@
 #include "data_structures.h"
 
 HEAP* initArray(int cap);
+    /*
+    * input:
+    * output:
+    * note:
+    */
 void printArray(HEAP *heap);
+    /*
+     * input:
+     * output:
+     * note:
+     */
 void writeArray();
+    /*
+     * input:
+     * output:
+     * note:
+     */
 void readIn();
+    /*
+     * input:
+     * output:
+     * note:
+     */
 void swap(HEAP *heap, int itemInd1, int itemInd2);
-int getNext(char *command)
+    /*
+     * input:
+     * output:
+     * note:
+     */
+
 
 #endif
