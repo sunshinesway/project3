@@ -54,8 +54,6 @@ void writeArray(HEAP *heap, FILE *outputFile) {
 }
 
 void readIn(HEAP *heap, FILE *inputFile) {
-    ELEMENT *newElement = (ELEMENT *)malloc(sizeof(ELEMENT));
-    double key;
     //base case if heap is null - error message
     if(!heap) {
         fprintf(stderr, "Error, file cannot be opened \n");
@@ -65,15 +63,19 @@ void readIn(HEAP *heap, FILE *inputFile) {
         fprintf(stderr, "Error: cannot open file %s\n", "ifile");
     }
     else {
-        heap->size = fscanf(inputFile, "%d");
+        double key;
+
+        fscanf(inputFile, "%d", &heap->size);
         if (heap->size > heap->capacity) {
             fprintf(stderr, "Error, heap capacity = %d, smaller than desired heap size = %d\n",
                     heap->capacity, heap->size);
             exit(0);
         }
         else {
-            while(fscanf(inputFile, "%lf", &key)) {
-
+            ELEMENT *newElem = heap->A[0];
+            for (int i = 0; i < heap->size; i++) {
+                fscanf(inputFile, "%lf", &key);
+                key = heap->A[i]->key;
             }
         }
     }
