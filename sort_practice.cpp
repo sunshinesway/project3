@@ -2,7 +2,8 @@
 
 int main() {
     int arr[]={10,34,664,1,98,235,87,111,45};
-    mergeSort(arr, arr[0], arr[(arr.length - 1)]);
+    int length = arr.length - 1;
+    mergeSort(arr, arr[0], arr[length]);
 }
 
 void merge(int arr[], int b, int c, int r) {

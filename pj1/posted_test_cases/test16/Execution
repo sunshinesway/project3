@@ -1,0 +1,4 @@
+#!/bin/bash
+touch O-file
+chmod 444 O-file
+./PJ1 I-file O-file < Commands > Output

@@ -1,0 +1,4 @@
+#!/bin/bash
+touch I-file
+chmod 000 I-file
+./PJ1 I-file O-file < Commands > Output

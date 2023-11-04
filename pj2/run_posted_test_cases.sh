@@ -7,7 +7,7 @@ flags=(0 1 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0)
 for i in {1..20}; do
   input_file="posted_test_cases/test${i}/ifile"
   expected_output="posted_test_cases/test${i}/ofile"
-  output_file="posted_test_cases/test${i}/myoutput"
+  output_file="posted_test_cases/test${i}/screen"
   screen_output_file="posted_test_cases/test${i}/myscreenoutput"
   commands_file="posted_test_cases/test${i}/Commands"
 

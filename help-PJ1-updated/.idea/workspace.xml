@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
@@ -7,6 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64ef4dc5-5ed4-4773-b2ee-e012bc77a893" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/help-PJ1-updated.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_structures.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_read.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_read.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_read.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_write.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_write.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_write.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/util.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/util.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/util.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../sort_practice.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../sort_practice.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +59,10 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -50,6 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696085909703</updated>
       <workItem from="1696085910928" duration="8000" />
+      <workItem from="1697807933695" duration="791000" />
     </task>
     <servers />
   </component>
