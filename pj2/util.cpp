@@ -13,7 +13,7 @@ HEAP* initArray(int cap) {
     HEAP *heap = (HEAP *)calloc(1, sizeof(HEAP));
         if (!heap) {
             fprintf(stderr, "Error: memory allocation failed for Heap\n");
-            exit(0);
+            return heap;
         }
     heap->capacity = cap;
     heap->size = 0;
@@ -101,7 +101,7 @@ void readIn(HEAP *heap, FILE *inputFile) {
             for (int i = 1; i <= heap->size; i++) {
                 heap->A[i] = newElem;
                 fscanf(inputFile, "%lf", &key);
-                key = heap->A[i]->key;
+                heap->A[i]->key = key;
             }
         }
     }
@@ -110,11 +110,11 @@ void readIn(HEAP *heap, FILE *inputFile) {
 void swap(HEAP *heap, int itemInd1, int itemInd2) {
 
     //create temp element for swapping
-    ELEMENT *temp = nullptr;
     ELEMENT *item1 = heap->A[itemInd1];
     ELEMENT *item2 = heap->A[itemInd2];
 
-    temp = item1;
-    item1 = item2;
-    item2 = temp;
+    ELEMENT *temp = item1;
+
+    *item1 = *item2;
+    *item2 = *temp;
 }

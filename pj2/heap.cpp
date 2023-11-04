@@ -49,7 +49,7 @@ void build_min_heap(HEAP *heap, int& count) {
     //update heap-size by size of current array, div by size of each element
     //to get integer
     heap->size = sizeof(heap->A) / sizeof(ELEMENT);
-    //loop through unheight of heap to heapify
+    //loop through height of heap to heapify
     for (int i = 1; i <= (heap->size/2); i++) {
         count++;
         min_heapify(heap, i, count);
