@@ -12,7 +12,8 @@
 //approximation of infinity for double val
 double infinity = std::numeric_limits<double>::infinity();
 
-void min_heapify(HEAP *heap, int elementIndex) {
+void min_heapify(HEAP *heap, int elementIndex, int& count) {
+    count++;
     //return if Element @elementIndex is null
     ELEMENT *element = heap->A[elementIndex];
     if(!element)
@@ -39,41 +40,38 @@ void min_heapify(HEAP *heap, int elementIndex) {
     //if current smaller than children, end function w/o action
     if(smallestKey->key != element->key)  {
         swap(heap, elementIndex, smallIndex);
-        min_heapify(heap, smallIndex);
+        min_heapify(heap, smallIndex, count);
     }
 
 }
 
-void build_min_heap(HEAP *heap) {
+void build_min_heap(HEAP *heap, int& count) {
     //update heap-size by size of current array, div by size of each element
     //to get integer
     heap->size = sizeof(heap->A) / sizeof(ELEMENT);
     //loop through unheight of heap to heapify
-    for (int i = 0; i <= (heap->size/2); i++) {
-        min_heapify(heap, i);
+    for (int i = 1; i <= (heap->size/2); i++) {
+        count++;
+        min_heapify(heap, i, count);
     }
 }
-
-void heapsort(HEAP *heap) {
+/*
+void heapsort(HEAP *heap, int& count) {
     //may remove if build-heap can be added at different time in program
-    build_min_heap(heap);
+    build_min_heap(heap, count);
     //loop through heap, swapping values as needed to sort ascending order
     //heapify to maintain heap as elements removed and heapsize updated
     int arrayLength = heap->size;
-    for (int i = 0; i < arrayLength; i++) {
-        swap(heap, 0, i);
+    for (int i = 1; i < arrayLength; i++) {
+        swap(heap, 2, i);
         heap->size--;
-        min_heapify(heap, i);
+        count++;
+        min_heapify(heap, i, count);
     }
-}
-/*//easypeasylemonsqueezy
-//if this fn fails I might drop out
-double heap_min(HEAP *heap) {
-    return heap->A[0]->key;
-}
-don't even need this, fuck me I guess*/
+} */
 
-double heap_extract_min(HEAP *heap){
+
+double heap_extract_min(HEAP *heap, int& count){
     //return max double val(infinity) with error mess. if heap empty
     if (heap->size < 1) {
         fprintf(stderr, "Error: heap empty\n");
@@ -81,13 +79,14 @@ double heap_extract_min(HEAP *heap){
     }
     else {
         //min is first val in heap
-        double minimum = heap->A[0]->key;
+        double minimum = heap->A[1]->key;
         //make last item in heap top of heap
-        heap->A[0] = heap->A[heap->size];
+        heap->A[1] = heap->A[heap->size];
         //reduce heap size
         heap->size--;
         //update heap to maintain after rem. min
-        min_heapify(heap, 0);
+        count++;
+        min_heapify(heap, 1, count);
         return minimum;
     }
 }

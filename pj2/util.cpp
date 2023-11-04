@@ -21,15 +21,30 @@ HEAP* initArray(int cap) {
     return heap;
 }
 
-void printArray(HEAP *heap) {
+void printArray(HEAP *heap, int count) {
     //base case if heap is null - error message
     if(!heap) {
         fprintf(stderr, "Error: heap is NULL");
     }
     //not NULL: print heap size, then each key value in ELEMENT A array
     else {
+
+        printf("Number of Heapify calls: %d\n%d\n",count, heap->size);
+        for(int i = 1; i <= heap->size; i++) {
+            printf("%lf\n",heap->A[i]->key);
+        }
+    }
+}
+
+void printArray(HEAP *heap) {
+    //base case if heap is null - error message
+    if(!heap) {
+        fprintf(stderr, "Error: heap is NULL");
+    }
+        //not NULL: print heap size, then each key value in ELEMENT A array
+    else {
         printf("%d\n", heap->size);
-        for(int i = 0; i < heap->size; i++) {
+        for(int i = 1; i <= heap->size; i++) {
             printf("%lf\n",heap->A[i]->key);
         }
     }
@@ -48,7 +63,7 @@ void writeArray(HEAP *heap, FILE *outputFile) {
     //write first heap-size, then each key value in ELEMENT A array
     else {
         fprintf(outputFile, "%d\n", heap->size);
-        for (int i = 0; i < heap->size; i++) {
+        for (int i = 1; i <= heap->size; i++) {
             fprintf(outputFile, "%lf\n", heap->A[i]->key);
         }
         //close the file DON'T FORGET IT
@@ -83,7 +98,7 @@ void readIn(HEAP *heap, FILE *inputFile) {
             //create new ELEMENT
             ELEMENT *newElem = heap->A[0];
             //loop through array, setting double value from file to key field
-            for (int i = 0; i < heap->size; i++) {
+            for (int i = 1; i <= heap->size; i++) {
                 fscanf(inputFile, "%lf", &key);
                 key = heap->A[i]->key;
             }
@@ -98,6 +113,7 @@ void swap(HEAP *heap, int itemInd1, int itemInd2) {
     ELEMENT *item1 = heap->A[itemInd1];
     ELEMENT *item2 = heap->A[itemInd2];
 
-
-
+    temp = item1;
+    item1 = item2;
+    item2 = temp;
 }

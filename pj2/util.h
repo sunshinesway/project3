@@ -11,16 +11,24 @@ HEAP* initArray(int cap);
     * output: HEAP struct, containing an array A of ELEMENTs
     * note:
     */
+void printArray(HEAP *heap, int count);
+    /*
+     * input: pointer to HEAP struct, AND
+     *        heapify count variable
+     * output: void return
+     * note: FLAG ==1, prints array A in heap to stdout: size of array, then each element
+     */
 void printArray(HEAP *heap);
     /*
      * input: pointer to HEAP struct
      * output: void return
-     * note: prints array A in heap to stdout: size of array, then each element
+     * note: FLAG ==0, prints array A in heap to stdout: size of array, then each element
      */
 void writeArray(HEAP *heap, FILE *outputFile);
     /*
      * input: pointer to HEAP struct AND
-     *        pointer to a FILE to write data to
+     *        pointer to a FILE to write data to, AND
+     *        heapify count variable
      * output: void return
      * note: writes array A in heap to outputFile, same as printArray()
      */

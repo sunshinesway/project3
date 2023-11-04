@@ -1,38 +1,44 @@
 // Cheyenne Swasey
 // 1227888508
-
-#define _util_h
+#ifndef heap_h
+#define heap_h
 #include "data_structures.h"
 
-void min_heapify(HEAP *heap, int elementIndex);
+void min_heapify(HEAP *heap, int elementIndex, int& count);
     /*
      * input: HEAP struct, containing array A of ELEMENT structs, AND
-     *        index of element to heapify in minheap
+     *        index of element to heapify in minheap, AND
+     *        reference to heapify count int variable
      * output: void return
      * note: purpose to recursively update minheap element-by-element
      */
 
-void build_min_heap(HEAP *heap);
+void build_min_heap(HEAP *heap, int& count);
     /*
-     * input: HEAP struct, containing array A of ELEMENT structs
+     * input: HEAP struct, containing array A of ELEMENT structs, AND
+     *        reference to heapify count int variable
      * output: void return
      * note: creates minheap of doubles from array. Calls min_heapify
      */
-void heapsort(HEAP *heap);
-    /*
-     * input: HEAP struct, containing array A of ELEMENT structs
+/*
+    void heapsort(HEAP *heap, int& count);
+
+     * input: HEAP struct, containing array A of ELEMENT structs, AND
+     *        reference to heapify count int variable
      * output: void return
      * note: sort minheap data into array, ascending order
      */
+
 double heap_min(HEAP *heap);
     /*
      * input: HEAP struct, containing array A of ELEMENT structs
      * output: double, key value of smallest element
      * note: only returns value, does not affect heap
      */
-double heap_extract_min(HEAP *heap);
+double heap_extract_min(HEAP *heap, int& count);
     /*
-     * input: HEAP struct, containing array A of ELEMENT structs
+     * input: HEAP struct, containing array A of ELEMENT structs, AND
+     *        reference to heapify count int variable
      * output: double, key value of smallest element
      * note: removes element, calls min_heapify to maintain heap
      */
@@ -52,3 +58,5 @@ void min_heap_insert(HEAP *heap, double key);
      * output: void return
      * note: adds new ELEMENT to array with key value. Calls heap_decrease_key
      */
+
+#endif
