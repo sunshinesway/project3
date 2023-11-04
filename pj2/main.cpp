@@ -18,7 +18,7 @@ int main(int argc, char **argv){
     int count = 0;
     double minimum;
     int j;
-    char command[20];
+    char command[100];
 
 
     inputFile = fopen(argv[1], "r");
@@ -27,13 +27,10 @@ int main(int argc, char **argv){
         exit(1);
     }
 
-    while ((j = fscanf(inputFile, "%lf", &key)) == 1) {
-
-    }
     //loop to read stdin for commands
     while(1) {
 
-        fscanf(stdin, "%19s", command);
+        fscanf(stdin, "%99s", command);
 
         if(strcmp(command, "Stop")==0)
             break;
@@ -59,7 +56,7 @@ int main(int argc, char **argv){
         else if(strcmp(command, "Read")==0){
             readIn(heap, inputFile);
             count = 0;
-            
+
         }
 
         else if(strcmp(command, "Insert")==0){
