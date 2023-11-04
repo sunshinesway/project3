@@ -110,7 +110,7 @@ void readIn(HEAP *heap, FILE *inputFile) {
 void swap(HEAP *heap, int itemInd1, int itemInd2) {
 
     //create temp element for swapping
-    ELEMENT *temp = NULL;
+    ELEMENT *temp = nullptr;
     ELEMENT *item1 = heap->A[itemInd1];
     ELEMENT *item2 = heap->A[itemInd2];
 
