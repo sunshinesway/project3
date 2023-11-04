@@ -1,5 +1,5 @@
 #ifndef _util_h
-#define _util_h 1
+#define util_h 1
 #include "data_structures.h"
 
 HEAP* initArray(int cap);
