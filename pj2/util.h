@@ -20,7 +20,7 @@ void writeArray(HEAP *heap, FILE *outputFile);
      * output:
      * note:
      */
-void readIn(HEAP *heap);
+void readIn(HEAP *heap, FILE *inputFile);
     /*
      * input:
      * output:
