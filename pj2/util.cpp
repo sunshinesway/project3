@@ -54,11 +54,13 @@ void writeArray(HEAP *heap, FILE *outputFile) {
     //base case if heap is null - error message
     if(!heap) {
         fprintf(stderr, "Error: heap is NULL");
+        return;
     }
     //not NULL: write array A to outputFile
     //error if file cannot be opened
     else if (!outputFile) {
         fprintf(stderr, "Error: cannot open file %s\n", "ofile");
+        return;
     }
     //write first heap-size, then each key value in ELEMENT A array
     else {
