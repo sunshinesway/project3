@@ -63,11 +63,12 @@ void heapsort(HEAP *heap) {
         min_heapify(heap, i);
     }
 }
-//easypeasylemonsqueezy
+/*//easypeasylemonsqueezy
 //if this fn fails I might drop out
 double heap_min(HEAP *heap) {
     return heap->A[0]->key;
 }
+don't even need this, fuck me I guess*/
 
 double heap_extract_min(HEAP *heap){
     //return max double val(infinity) with error mess. if heap empty

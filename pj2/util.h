@@ -14,13 +14,13 @@ void printArray(HEAP *heap);
      * output:
      * note:
      */
-void writeArray();
+void writeArray(HEAP *heap, FILE *outputFile);
     /*
      * input:
      * output:
      * note:
      */
-void readIn();
+void readIn(HEAP *heap);
     /*
      * input:
      * output:

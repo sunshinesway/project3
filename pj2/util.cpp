@@ -6,46 +6,6 @@
 #include "heap.h"
 #include "data_structures.h"
 
-int getNext(char *command){
-    double key;
-
-    if(strcmp(command, "Stop")==0)
-        exit(0);
-
-    else if(strcmp(command, "Init")) {
-        fscanf(stdin, "%s", command);
-        key = std::stod(command);
-
-    }
-
-    else if(strcmp(command, "Print")){
-
-    }
-
-    else if(strcmp(command, "Write")){
-
-    }
-
-    else if(strcmp(command, "Read")){
-
-    }
-
-    else if(strcmp(command, "Insert")){
-
-    }
-
-    else if(strcmp(command, "ExtractMin")){
-
-    }
-
-    else if(strcmp(command, "DecreaseKey")){
-
-    }
-    else {
-        fprintf(stderr, "Warning: Invalid instruction\n");
-    }
-}
-
 HEAP* initArray(int cap) {
     HEAP *heap = (HEAP *)calloc(1, sizeof(HEAP));
         if (!heap) {
@@ -59,11 +19,38 @@ HEAP* initArray(int cap) {
 }
 
 void printArray(HEAP *heap) {
-
+    //base case if heap is null - error message
+    if(!heap) {
+        fprintf(stderr, "Error: heap is NULL");
+    }
+    //not NULL: print heap size, then each key value in ELEMENT A array
+    else {
+        printf("%d\n", heap->size);
+        for(int i = 0; i < heap->size; i++) {
+            printf("%lf\n",heap->A[i]->key);
+        }
+    }
 }
 
-void writeArray() {
-
+void writeArray(HEAP *heap, FILE *outputFile) {
+    //base case if heap is null - error message
+    if(!heap) {
+        fprintf(stderr, "Error: heap is NULL");
+    }
+    //not NULL: write array A to outputFile
+    //error if file cannot be opened
+    else if (!outputFile) {
+        fprintf(stderr, "Error: cannot open file %s\n", "ofile");
+    }
+    //write first heap-size, then each key value in ELEMENT A array
+    else {
+        fprintf(outputFile, "%d\n", heap->size);
+        for (int i = 0; i < heap->size; i++) {
+            fprintf(outputFile, "%lf\n", heap->A[i]->key);
+        }
+        //close the file DON'T FORGET IT
+        fclose(outputFile);
+    }
 }
 
 void readIn() {
