@@ -107,6 +107,7 @@ void readIn(HEAP *heap, FILE *inputFile) {
             }
         }
     }
+    fclose(*inputFile);
 }
 
 void swap(HEAP *heap, int itemInd1, int itemInd2) {

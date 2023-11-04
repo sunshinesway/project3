@@ -59,7 +59,7 @@ int main(int argc, char **argv){
         else if(strcmp(command, "Read")==0){
             readIn(heap, inputFile);
             count = 0;
-            fclose(inputFile);
+            
         }
 
         else if(strcmp(command, "Insert")==0){
