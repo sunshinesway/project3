@@ -29,11 +29,11 @@ void min_heapify(HEAP *heap, int elementIndex, int& count) {
     int rightIndex = elementIndex*2 + 1;
     ELEMENT *leftC = nullptr;
     ELEMENT *rightC = nullptr;
-    //check if leftIndex is within current array, only assign leftC if YES
+    //check if leftIndex is within current array, only assign leftC !NULL if YES
     if (leftIndex >= 0 && leftIndex <= heap->size) {
         leftC = heap->A[leftIndex];
     }
-    //check if rightIndex is within current array, only assign rightC if YES
+    //check if rightIndex is within current array, only assign rightC !NULL if YES
     if (rightIndex >=0 && rightIndex <= heap->size) {
         rightC = heap->A[rightIndex];
     }
@@ -43,7 +43,7 @@ void min_heapify(HEAP *heap, int elementIndex, int& count) {
         smallestKey = leftC;
         smallIndex = leftIndex;
     }
-    //if to check leftChild key is smaller than current or LeftChild
+    //if to check leftChild key is smaller than current or leftChild
     if(rightC != nullptr && rightC->key < smallestKey->key) {
         smallestKey = rightC;
         smallIndex = rightIndex;
@@ -58,30 +58,11 @@ void min_heapify(HEAP *heap, int elementIndex, int& count) {
 }
 
 void build_min_heap(HEAP *heap, int& count) {
-    //update heap-size by size of current array, div by size of each element
-    //to get integer
-    //heap->size = sizeof(heap->A) / sizeof(ELEMENT);
-    //loop through height of heap to heapify
-    //printArray(heap);
+    //loop through heap to heapify - starting middle, work up
     for (int i = (heap->size/2); i > 0; i--) {
         min_heapify(heap, i, count);
     }
 }
-/*
-void heapsort(HEAP *heap, int& count) {
-    //may remove if build-heap can be added at different time in program
-    build_min_heap(heap, count);
-    //loop through heap, swapping values as needed to sort ascending order
-    //heapify to maintain heap as elements removed and heapsize updated
-    int arrayLength = heap->size;
-    for (int i = 1; i < arrayLength; i++) {
-        swap(heap, 2, i);
-        heap->size--;
-        count++;
-        min_heapify(heap, i, count);
-    }
-} */
-
 
 double heap_extract_min(HEAP *heap, int& count){
     //return max double val(infinity) with error mess. if heap empty
@@ -94,11 +75,13 @@ double heap_extract_min(HEAP *heap, int& count){
         double minimum = heap->A[1]->key;
         //make last item in heap top of heap
         heap->A[1] = heap->A[heap->size];
-        //reduce heap size
+
+        //set old last element to NULL
         heap->A[heap->size] = nullptr;
+        //reduce heap size
         heap->size--;
 
-        //update heap to maintain after rem. min
+        //update heap to maintain after remove min
         min_heapify(heap, 1, count);
         return minimum;
     }
@@ -125,15 +108,13 @@ void heap_decrease_key(HEAP *heap, int elem, double newKey) {
 void min_heap_insert(HEAP *heap, double key) {
     //increase heap size
     heap->size++;
+    //create new element, allocate memory
     ELEMENT *newElem = (ELEMENT *)malloc(sizeof(ELEMENT));
     heap->A[heap->size] = newElem;
-    //int i = heap->size;
     //make new element key as high as possible
-    //call decrease key to maintain heap structure
     heap->A[heap->size]->key = infinity;
+    //call decrease key to maintain heap structure with swaps
     heap_decrease_key(heap, heap->size, key);
-
-    //free(newElem);
 }
 
 
