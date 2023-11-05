@@ -47,7 +47,10 @@ void min_heapify(HEAP *heap, int elementIndex, int& count) {
         swap(heap, elementIndex, smallIndex);
         min_heapify(heap, smallIndex, count);
     }
-
+    free(element);
+    free(leftC);
+    free(rightC);
+    free(smallestKey);
 }
 
 void build_min_heap(HEAP *heap, int& count) {
@@ -87,7 +90,9 @@ double heap_extract_min(HEAP *heap, int& count){
         //make last item in heap top of heap
         heap->A[1] = heap->A[heap->size];
         //reduce heap size
+        heap->A[heap->size] = nullptr;
         heap->size--;
+
         //update heap to maintain after rem. min
         min_heapify(heap, 1, count);
         return minimum;
@@ -107,6 +112,7 @@ void heap_decrease_key(HEAP *heap, int elem, double newKey) {
         while(elem > 1 && heap->A[parent]->key > heap->A[elem]->key ) {
             swap(heap, parent, elem);
             elem = parent;
+            parent = elem/2;
         }
     }
 }
@@ -114,12 +120,15 @@ void heap_decrease_key(HEAP *heap, int elem, double newKey) {
 void min_heap_insert(HEAP *heap, double key) {
     //increase heap size
     heap->size++;
-    int i = heap->size;
+    ELEMENT *newElem = (ELEMENT *)malloc(sizeof(ELEMENT));
+    heap->A[heap->size] = newElem;
+    //int i = heap->size;
     //make new element key as high as possible
     //call decrease key to maintain heap structure
-    heap->A[i]->key = infinity;
-    heap_decrease_key(heap, i, key);
+    heap->A[heap->size]->key = infinity;
+    heap_decrease_key(heap, heap->size, key);
 
+    free(newElem);
 }
 
 

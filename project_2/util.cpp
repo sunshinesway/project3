@@ -22,6 +22,7 @@ HEAP* initArray(int cap) {
     return heap;
 }
 
+/*
 void printArray(HEAP *heap, int count) {
     //base case if heap is null - error message
     if(!heap) {
@@ -29,13 +30,17 @@ void printArray(HEAP *heap, int count) {
     }
     //not NULL: print heap size, then each key value in ELEMENT A array
     else {
-
-        printf("Number of Heapify calls: %d\n%d\n",count, heap->size);
-        for(int i = 1; i <= heap->size; i++) {
-            printf("%lf\n",heap->A[i]->key);
+        if(heap->size>0){
+            printf("%d\n", heap->size);
+            for(int i = 1; i <= heap->size; i++) {
+                printf("%lf\n", heap->A[i]->key);
+            }
+        }
+        else {
+            printf("%d\n", heap->size);
         }
     }
-}
+}*/
 
 void printArray(HEAP *heap) {
     //base case if heap is null - error message
@@ -109,11 +114,18 @@ void readIn(HEAP *heap, FILE *inputFile, int& count) {
                 heap->A[i] = newElem;
                 fscanf(inputFile, "%lf", &key);
                 heap->A[i]->key = key;
+
+                if(i == heap->size) {
+                    free(newElem);
+                }
             }
+
             build_min_heap(heap, count);
+
         }
     }
     fclose(inputFile);
+
 }
 
 void swap(HEAP *heap, int itemInd1, int itemInd2) {
@@ -126,4 +138,13 @@ void swap(HEAP *heap, int itemInd1, int itemInd2) {
 
     heap->A[itemInd1] = heap->A[itemInd2];
     heap->A[itemInd2] = temp;
+
+    free(temp);
+}
+
+void freeMemory(HEAP *heap) {
+    for(int i = 0; i <= heap->size; i++) {
+        free(heap->A[i]);
+    }
+    free(heap);
 }

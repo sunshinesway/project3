@@ -36,18 +36,13 @@ int main(int argc, char **argv){
             break;
 
         else if(strcmp(command, "Init")==0) {
-            //printf("|%s|\n", command);
             fscanf(stdin, "%s", command);
-            //printf("|%s|\n", command);
             capacity = std::atoi(command);
             heap = initArray(capacity);
         }
 
         else if(strcmp(command, "Print")==0){
-            if(flag ==1)
-                printArray(heap, count);
-            else
-                printArray(heap);
+            printArray(heap);
         }
 
         else if(strcmp(command, "Write")==0){
@@ -59,6 +54,10 @@ int main(int argc, char **argv){
             count = 0;
             readIn(heap, inputFile, count);
 
+            if(flag == 1) {
+                printf("Number of Heapify calls: %d\n", count);
+            }
+
         }
 
         else if(strcmp(command, "Insert")==0){
@@ -68,9 +67,15 @@ int main(int argc, char **argv){
         }
 
         else if(strcmp(command, "ExtractMin")==0){
-            count = 0;
-            minimum = heap_extract_min(heap, count);
-            printf("%s%lf\n","ExtractMin: ", minimum);
+            if(heap->size>0) {
+                count = 0;
+                minimum = heap_extract_min(heap, count);
+                printf("%s%lf\n", "ExtractMin: ", minimum);
+
+                if(flag == 1) {
+                    printf("Number of Heapify calls: %d\n", count);
+                }
+            }
         }
 
         else if(strcmp(command, "DecreaseKey")==0){
@@ -84,7 +89,7 @@ int main(int argc, char **argv){
             fprintf(stderr, "Warning: Invalid instruction\n");
         }
     }
-
+    freeMemory(heap);
 }
 
 
