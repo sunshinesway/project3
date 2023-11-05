@@ -13,7 +13,6 @@
 double infinity = std::numeric_limits<double>::infinity();
 
 void min_heapify(HEAP *heap, int elementIndex, int& count) {
-    printArray(heap,count);
     count++;
     //return if Element @elementIndex is null
     ELEMENT *element = heap->A[elementIndex];

@@ -56,8 +56,8 @@ int main(int argc, char **argv){
         }
 
         else if(strcmp(command, "Read")==0){
+            count = 0;
             readIn(heap, inputFile, count);
-            //count = 0;
 
         }
 
@@ -68,9 +68,9 @@ int main(int argc, char **argv){
         }
 
         else if(strcmp(command, "ExtractMin")==0){
+            count = 0;
             minimum = heap_extract_min(heap, count);
             printf("%s%lf\n","ExtractMin: ", minimum);
-            count = 0;
         }
 
         else if(strcmp(command, "DecreaseKey")==0){

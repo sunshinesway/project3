@@ -93,8 +93,9 @@ void readIn(HEAP *heap, FILE *inputFile, int& count) {
         fscanf(inputFile, "%d", &heap->size);
         //error if heap cap<heap size
         if (heap->size > heap->capacity) {
-            fprintf(stderr, "Error, heap capacity = %d, smaller than desired heap size = %d\n",
-                    heap->capacity, heap->size);
+            heap->size = 0;
+            //fprintf(stderr, "Error, heap capacity = %d, smaller than desired heap size = %d\n",
+                    //heap->capacity, heap->size);
             return;
         }
         else {
