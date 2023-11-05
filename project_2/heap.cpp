@@ -47,10 +47,7 @@ void min_heapify(HEAP *heap, int elementIndex, int& count) {
         swap(heap, elementIndex, smallIndex);
         min_heapify(heap, smallIndex, count);
     }
-    free(element);
-    free(leftC);
-    free(rightC);
-    free(smallestKey);
+
 }
 
 void build_min_heap(HEAP *heap, int& count) {

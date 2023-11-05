@@ -139,7 +139,6 @@ void swap(HEAP *heap, int itemInd1, int itemInd2) {
     heap->A[itemInd1] = heap->A[itemInd2];
     heap->A[itemInd2] = temp;
 
-    free(temp);
 }
 
 void freeMemory(HEAP *heap) {
