@@ -3,4 +3,4 @@ project(pj2)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(pj2 main.cpp)
+add_executable(pj2 main.cpp heap.cpp util.cpp)
