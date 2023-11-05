@@ -89,7 +89,6 @@ double heap_extract_min(HEAP *heap, int& count){
         //reduce heap size
         heap->size--;
         //update heap to maintain after rem. min
-        count++;
         min_heapify(heap, 1, count);
         return minimum;
     }
@@ -99,7 +98,7 @@ void heap_decrease_key(HEAP *heap, int elem, double newKey) {
     //error mess. if new key not less than current
     //to decrease key you must have a decreased key
     if (newKey > heap->A[elem]->key)
-        fprintf(stderr, "Error: heap empty\n");
+        fprintf(stderr, "Error: NEW KEY NOT LESS\n");
     else {
         //update key value
         heap->A[elem]->key = newKey;

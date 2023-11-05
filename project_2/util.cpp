@@ -45,8 +45,10 @@ void printArray(HEAP *heap) {
         //not NULL: print heap size, then each key value in ELEMENT A array
     else {
         printf("%d\n", heap->size);
-        for(int i = 1; i <= heap->size; i++) {
-            printf("%lf\n",heap->A[i]->key);
+        if(heap->size>0){
+            for(int i = 1; i <= heap->size; i++) {
+                printf("%lf\n", heap->A[i]->key);
+            }
         }
     }
 }
@@ -103,7 +105,7 @@ void readIn(HEAP *heap, FILE *inputFile, int& count) {
 
             //loop through array, setting double value from file to key field
             for (int i = 1; i <= heap->size; i++) {
-                auto *newElem = (ELEMENT *)malloc(sizeof(ELEMENT));
+                ELEMENT *newElem = (ELEMENT *)malloc(sizeof(ELEMENT));
                 heap->A[i] = newElem;
                 fscanf(inputFile, "%lf", &key);
                 heap->A[i]->key = key;
