@@ -125,7 +125,7 @@ void min_heap_insert(HEAP *heap, double key) {
     heap->A[heap->size]->key = infinity;
     heap_decrease_key(heap, heap->size, key);
 
-    free(newElem);
+    //free(newElem);
 }
 
 
