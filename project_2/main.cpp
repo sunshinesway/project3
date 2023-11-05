@@ -59,7 +59,7 @@ int main(int argc, char **argv){
             count = 0;
             readIn(heap, inputFile, count);
 
-            if(flag == 1) {
+            if(flag == 1 && heap->size > 0) {
                 printf("Number of Heapify calls: %d\n", count);
             }
 
