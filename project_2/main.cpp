@@ -21,11 +21,7 @@ int main(int argc, char **argv){
     char command[100];
 
 
-    inputFile = fopen(argv[1], "r");
-    if(!inputFile) {
-        fprintf(stderr, "Error, file cannot be opened \n");
-        exit(1);
-    }
+
 
     //loop to read stdin for commands
     while(1) {
@@ -56,6 +52,11 @@ int main(int argc, char **argv){
         }
 
         else if(strcmp(command, "Read")==0){
+            inputFile = fopen(argv[1], "r");
+            if(!inputFile) {
+                fprintf(stderr, "Error, file cannot be opened \n");
+                exit(1);
+            }
             count = 0;
             readIn(heap, inputFile, count);
 

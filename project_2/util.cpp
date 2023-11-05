@@ -97,6 +97,13 @@ void readIn(HEAP *heap, FILE *inputFile, int& count) {
         fprintf(stderr, "Error: cannot open file %s\n", "ifile");
         return;
     }
+    /*if(heap->size > 0) {
+        for(int i = 0; i <= heap->size; i++) {
+            free(heap->A[i]);
+        }
+        heap->size = 0;
+        rewind(inputFile);
+    }*/
     //read from file
     else {
         double key;
@@ -129,6 +136,7 @@ void readIn(HEAP *heap, FILE *inputFile, int& count) {
 
         }
     }
+    rewind(inputFile);
     fclose(inputFile);
 
 }
