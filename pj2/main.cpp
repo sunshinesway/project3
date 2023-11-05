@@ -36,7 +36,9 @@ int main(int argc, char **argv){
             break;
 
         else if(strcmp(command, "Init")==0) {
+            //printf("|%s|\n", command);
             fscanf(stdin, "%s", command);
+            //printf("|%s|\n", command);
             capacity = std::atoi(command);
             heap = initArray(capacity);
         }

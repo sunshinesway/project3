@@ -17,6 +17,7 @@ HEAP* initArray(int cap) {
         }
     heap->capacity = cap;
     heap->size = 0;
+    heap->A = (ELEMENT **)calloc(cap, sizeof(ELEMENT *));
 
     return heap;
 }
@@ -101,7 +102,7 @@ void readIn(HEAP *heap, FILE *inputFile) {
             ELEMENT *newElem = (ELEMENT *)malloc(sizeof(ELEMENT));
             //loop through array, setting double value from file to key field
             for (int i = 1; i <= heap->size; i++) {
-                heap->A[i] = *newElem;
+                heap->A[i] = newElem;
                 fscanf(inputFile, "%lf", &key);
                 heap->A[i]->key = key;
             }
