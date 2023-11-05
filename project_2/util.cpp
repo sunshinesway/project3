@@ -13,12 +13,16 @@ HEAP* initArray(int cap) {
     HEAP *heap = (HEAP *)calloc(1, sizeof(HEAP));
         if (!heap) {
             fprintf(stderr, "Error: memory allocation failed for Heap\n");
-            return heap;
+            return nullptr;
         }
     heap->capacity = cap;
     heap->size = 0;
     heap->A = (ELEMENT **)calloc(cap, sizeof(ELEMENT *));
-
+        if(!heap->A) {
+            fprintf(stderr, "Error: memory allocation failed for Heap Array\n");
+            free(heap);
+            return nullptr;
+        }
     return heap;
 }
 
@@ -134,12 +138,12 @@ void swap(HEAP *heap, int itemInd1, int itemInd2) {
     //create temp element for swapping
     //ELEMENT *item1 = heap->A[itemInd1];
     //ELEMENT *item2 = heap->A[itemInd2];
-    printArray(heap);
+    //printArray(heap);
     ELEMENT *temp = heap->A[itemInd1];
 
     heap->A[itemInd1] = heap->A[itemInd2];
     heap->A[itemInd2] = temp;
-    printArray(heap);
+   // printArray(heap);
 }
 
 void freeMemory(HEAP *heap) {

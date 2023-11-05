@@ -62,8 +62,10 @@ int main(int argc, char **argv){
 
         else if(strcmp(command, "Insert")==0){
             fscanf(stdin, "%s", command);
-            key = std::stod(command);
-            min_heap_insert(heap, key);
+            if(heap->size < heap->capacity) {
+                key = std::stod(command);
+                min_heap_insert(heap, key);
+            }
         }
 
         else if(strcmp(command, "ExtractMin")==0){

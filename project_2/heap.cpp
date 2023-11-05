@@ -60,7 +60,7 @@ void build_min_heap(HEAP *heap, int& count) {
     //to get integer
     //heap->size = sizeof(heap->A) / sizeof(ELEMENT);
     //loop through height of heap to heapify
-    printArray(heap);
+    //printArray(heap);
     for (int i = (heap->size/2); i > 0; i--) {
         min_heapify(heap, i, count);
     }
