@@ -31,22 +31,22 @@ void min_heapify(HEAP *heap, int elementIndex, int& count) {
     ELEMENT *rightC = nullptr;
     //check if leftIndex is within current array, only assign leftC if YES
     if (leftIndex >= 0 && leftIndex <= heap->size) {
-        leftC = heap->A[elementIndex*2];
+        leftC = heap->A[leftIndex];
     }
     //check if rightIndex is within current array, only assign rightC if YES
     if (rightIndex >=0 && rightIndex <= heap->size) {
-        rightC = heap->A[elementIndex*2 + 1];
+        rightC = heap->A[rightIndex];
     }
 
     //if to check leftChild key is smaller than current
     if(leftC != nullptr && leftC->key < smallestKey->key) {
         smallestKey = leftC;
-        smallIndex = elementIndex*2;
+        smallIndex = leftIndex;
     }
     //if to check leftChild key is smaller than current or LeftChild
     if(rightC != nullptr && rightC->key < smallestKey->key) {
         smallestKey = rightC;
-        smallIndex = elementIndex*2 + 1;
+        smallIndex = rightIndex;
     }
     //if smallestKey was updated to L or R child, swap and update heap
     //if current smaller than children, end function w/o action
