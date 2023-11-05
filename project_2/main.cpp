@@ -9,7 +9,7 @@
 #include "heap.h"
 
 int main(int argc, char **argv){
-    HEAP *heap = (HEAP *) calloc(1, sizeof(HEAP));
+    HEAP *heap = nullptr;
     FILE *inputFile = nullptr;
     FILE *outputFile = nullptr;
     int flag = std::stoi(argv[3]);
@@ -38,6 +38,11 @@ int main(int argc, char **argv){
         else if(strcmp(command, "Init")==0) {
             fscanf(stdin, "%s", command);
             capacity = std::atoi(command);
+            //if Init is being called AGAIN, free heap memory, and rewind inputFile to pull heapsize again
+            if(heap) {
+                freeMemory(heap);
+                rewind(inputFile);
+            }
             heap = initArray(capacity);
         }
 

@@ -150,5 +150,6 @@ void freeMemory(HEAP *heap) {
     for(int i = 0; i <= heap->size; i++) {
         free(heap->A[i]);
     }
+    free(heap->A);
     free(heap);
 }
