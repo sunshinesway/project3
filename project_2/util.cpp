@@ -115,9 +115,10 @@ void readIn(HEAP *heap, FILE *inputFile, int& count) {
                 fscanf(inputFile, "%lf", &key);
                 heap->A[i]->key = key;
 
+                /*
                 if(i == heap->size) {
                     free(newElem);
-                }
+                }*/
             }
 
             build_min_heap(heap, count);
@@ -133,12 +134,12 @@ void swap(HEAP *heap, int itemInd1, int itemInd2) {
     //create temp element for swapping
     //ELEMENT *item1 = heap->A[itemInd1];
     //ELEMENT *item2 = heap->A[itemInd2];
-
+    printArray(heap);
     ELEMENT *temp = heap->A[itemInd1];
 
     heap->A[itemInd1] = heap->A[itemInd2];
     heap->A[itemInd2] = temp;
-
+    printArray(heap);
 }
 
 void freeMemory(HEAP *heap) {

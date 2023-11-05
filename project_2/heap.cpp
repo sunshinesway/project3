@@ -21,18 +21,23 @@ void min_heapify(HEAP *heap, int elementIndex, int& count) {
 
     //set current element to smallest
     ELEMENT *smallestKey = element;
-    int smallIndex;
+    int smallIndex = -1;
     //create ELEMENT objects for children of current
-    ELEMENT *leftC = heap->A[elementIndex*2];
-    ELEMENT *rightC = heap->A[elementIndex*2 + 1];
+    int leftIndex = elementIndex*2;
+    int rightIndex = elementIndex*2 + 1;
+    ELEMENT *leftC = nullptr;
+    ELEMENT *rightC = nullptr;
+    //check if leftIndex is within current array, only assign leftC if YES
+    if (leftIndex >= 0 && leftIndex <= heap->size) {
+        leftC = heap->A[elementIndex*2];
+    }
+    //check if rightIndex is within current array, only assign rightC if YES
+    if (rightIndex >=0 && rightIndex <= heap->size) {
+        rightC = heap->A[elementIndex*2 + 1];
+    }
 
     //if to check leftChild key is smaller than current
-    //double leftCKey = leftC->key;
-    //double rightCKey = rightC->key;
-    //double currKey = element->key;
-    //double smallKey = smallestKey->key;
-
-    if(leftC != nullptr && leftC->key < element->key) {
+    if(leftC != nullptr && leftC->key < smallestKey->key) {
         smallestKey = leftC;
         smallIndex = elementIndex*2;
     }
@@ -43,7 +48,7 @@ void min_heapify(HEAP *heap, int elementIndex, int& count) {
     }
     //if smallestKey was updated to L or R child, swap and update heap
     //if current smaller than children, end function w/o action
-    if(smallestKey->key != element->key)  {
+    if(smallestKey->key != element->key && smallIndex >= 0 && smallIndex <= heap->size)  {
         swap(heap, elementIndex, smallIndex);
         min_heapify(heap, smallIndex, count);
     }
@@ -55,6 +60,7 @@ void build_min_heap(HEAP *heap, int& count) {
     //to get integer
     //heap->size = sizeof(heap->A) / sizeof(ELEMENT);
     //loop through height of heap to heapify
+    printArray(heap);
     for (int i = (heap->size/2); i > 0; i--) {
         min_heapify(heap, i, count);
     }
