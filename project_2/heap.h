@@ -12,28 +12,12 @@ void min_heapify(HEAP *heap, int elementIndex, int& count);
      * output: void return
      * note: purpose to recursively update minheap element-by-element
      */
-
 void build_min_heap(HEAP *heap, int& count);
     /*
      * input: HEAP struct, containing array A of ELEMENT structs, AND
      *        reference to heapify count int variable
      * output: void return
      * note: creates minheap of doubles from array. Calls min_heapify
-     */
-/*
-    void heapsort(HEAP *heap, int& count);
-
-     * input: HEAP struct, containing array A of ELEMENT structs, AND
-     *        reference to heapify count int variable
-     * output: void return
-     * note: sort minheap data into array, ascending order
-     */
-
-double heap_min(HEAP *heap);
-    /*
-     * input: HEAP struct, containing array A of ELEMENT structs
-     * output: double, key value of smallest element
-     * note: only returns value, does not affect heap
      */
 double heap_extract_min(HEAP *heap, int& count);
     /*

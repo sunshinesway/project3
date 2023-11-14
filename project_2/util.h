@@ -11,13 +11,6 @@ HEAP* initArray(int cap);
     * output: HEAP struct, containing an array A of ELEMENTs
     * note:
     */
-void printArray(HEAP *heap, int count);
-    /*
-     * input: pointer to HEAP struct, AND
-     *        heapify count variable
-     * output: void return
-     * note: FLAG ==1, prints array A in heap to stdout: size of array, then each element
-     */
 void printArray(HEAP *heap);
     /*
      * input: pointer to HEAP struct
@@ -27,15 +20,15 @@ void printArray(HEAP *heap);
 void writeArray(HEAP *heap, FILE *outputFile);
     /*
      * input: pointer to HEAP struct AND
-     *        pointer to a FILE to write data to, AND
-     *        heapify count variable
+     *        pointer to a FILE to write data to
      * output: void return
      * note: writes array A in heap to outputFile, same as printArray()
      */
 void readIn(HEAP *heap, FILE *inputFile, int& count);
     /*
      * input: pointer to HEAP struct AND
-     *        pointer to a FILE to read data from
+     *        pointer to a FILE to read data from, AND
+     *        reference to heapify count int variable
      * output: void return
      * note: reads data from inputFile and designates first int as array size,
      *       then each following as an key for each ELEMENT in array
@@ -47,6 +40,11 @@ void swap(HEAP *heap, int itemInd1, int itemInd2);
      * output: void return
      * note: swaps position of ELEMENTs at 1 and 2
      */
-
+void freeMemory(HEAP *heap);
+    /*
+    * input: pointer to HEAP struct
+    * output: void return
+    * note: frees memory of all array elements, array, and heap
+    */
 
 #endif
