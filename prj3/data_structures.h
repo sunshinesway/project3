@@ -4,6 +4,14 @@
 #ifndef _data_structures_h
 #define _data_structures_h 1
 
+typedef struct TAG_NODE {
+    int index;
+    int u;
+    int v;
+    double w;
+    TAG_NODE *next;
+}NODE;
+//typedef NODE *pNODE;
 
 typedef struct TAG_VERTEX {
     int index;
@@ -11,6 +19,9 @@ typedef struct TAG_VERTEX {
     double key;
     int parent;
     int position;
+
+    int numAdj;
+    NODE** AdjList; //array of pointers to VERTEX's adjacent EDGES
 
 }VERTEX;
 typedef VERTEX *ptVERTEX;
@@ -27,14 +38,7 @@ typedef struct TAG_HEAP {
 typedef VERTEX ELEMENT;
 typedef ELEMENT *pELEMENT;
 
-typedef struct TAG_NODE {
-    int index;
-    int u;
-    int v;
-    double w;
-    TAG_NODE *next;
-}NODE;
-//typedef NODE *pNODE;
+
 
 typedef struct TAG_STACK{
     int capacity;
