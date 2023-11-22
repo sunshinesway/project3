@@ -9,6 +9,10 @@
 #include "heap.h"
 #include "data_structures.h"
 
+void insertAdjList(VERTEX *vertex, NODE *edge, bool insertBegin) {
+
+}
+
 HEAP* initArray(int cap) {
     //allocate memory for single heap
     //return null with error if unsuccessful

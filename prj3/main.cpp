@@ -19,11 +19,15 @@ int main(int argc, char **argv) {
     int numEdges;
     int numVertices;
     bool graph = false;
+    bool const insertBegin = true;
     int i;
+    int edgeIndex;
     int origin;
     int destin;
-    //directed == TRUE,
-    // undirected == FALSE
+    double weight;
+
+    //directed: graph
+    //undirected: !graph
     if(strcmp(graphType, "DirectedGraph")==0) {
         graph = true;
     }
@@ -57,12 +61,41 @@ int main(int argc, char **argv) {
     }
 
     for(i = numEdges; i > 0; i--) {
-        if(graph) {
-            if(flag == 1) {
+        NODE *newEdge = (NODE *)malloc(sizeof(NODE));
 
+        fscanf(inputFile, "%d", &newEdge->index);
+        fscanf(inputFile, "%d", &newEdge->origin);
+        fscanf(inputFile, "%d", &newEdge->destin);
+        fscanf(inputFile, "%lf", &newEdge->weight);
+
+        //DIRECTED GRAPH
+        if(graph) {
+            //IF FLAG 1
+            //insert EDGE at BEGINNING of V[origin] adjList
+            if (flag == 1) {
+                insertAdjList(V[newEdge->origin], newEdge, insertBegin);
+            }
+                //IF FLAG 2
+                //insert EDGE at END of V[origin] adjList
+            else {
+                insertAdjList(V[newEdge->origin], newEdge, !insertBegin);
             }
         }
-
+        //UNDIRECTED GRAPH
+        else {
+            //IF FLAG 1
+            //insert EDGE at BEGINNING of BOTH V[origin] adjList & V[destin] adjList
+            if (flag == 1) {
+                insertAdjList(V[newEdge->origin], newEdge, insertBegin);
+                insertAdjList(V[newEdge->destin], newEdge, insertBegin);
+            }
+            //IF FLAG 2
+            //insert EDGE at END of BOTH V[origin] adjList & V[destin] adjList
+            else {
+                insertAdjList(V[newEdge->origin], newEdge, !insertBegin);
+                insertAdjList(V[newEdge->destin], newEdge, !insertBegin);
+            }
+        }
     }
 
     while(1) {

@@ -6,9 +6,9 @@
 
 typedef struct TAG_NODE {
     int index;
-    int u;
-    int v;
-    double w;
+    int origin;
+    int destin;
+    double weight;
     TAG_NODE *next;
 }NODE;
 //typedef NODE *pNODE;

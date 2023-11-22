@@ -5,6 +5,13 @@
 #define util_h 1
 #include "data_structures.h"
 
+void insertAdjList(VERTEX *vertex, NODE *edge, bool insertBegin);
+/*
+* input:
+* output:
+* note:
+*/
+
 HEAP* initArray(int cap);
 /*
 * input: integer capacity, from stdin command
