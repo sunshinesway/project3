@@ -124,7 +124,7 @@ int main(int argc, char **argv) {
             break;
 
         else if(strcmp(command, "PrintADJ")==0) {
-            printAdjLists(V);
+            printAdjLists(V, numVertices);
         }
 
         else if(strcmp(command, "SinglePair")==0){

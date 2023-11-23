@@ -24,7 +24,7 @@ STACK* initStackArray(int cap);
 * output: STACK struct, containing an array S of NODEs
 * note:
 */
-void printAdjLists(VERTEX **vArray);
+void printAdjLists(VERTEX **vArray, int numVert);
 /*
  * input: pointer to VERTEX array
  * output: void return

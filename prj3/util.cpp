@@ -68,7 +68,7 @@ STACK* initStackArray(int cap) {
 }
 
 
-void printAdjLists(VERTEX **vArray) {
+void printAdjLists(VERTEX **vArray, int numVert) {
     //base case if heap is null - error message
     if(!vArray[1]) {
         fprintf(stderr, "Error: AdjList is NULL");
@@ -76,11 +76,11 @@ void printAdjLists(VERTEX **vArray) {
         //not NULL: print
         // ADJ[1]:-->[1 4: 5.00]-->[1 2: 10.00]
     else {
-        int arrayLength = sizeof(vArray)/sizeof(VERTEX *);
-        for(int i = 1; i <= arrayLength; i++) {
-            printf("ADJ[%d]:-->:", i);
+        //int arrayLength = sizeof(vArray)/sizeof(VERTEX *);
+        for(int i = 1; i <= numVert; i++) {
+            printf("ADJ[%d]:", i);
             for(int j = 1; j <= vArray[i]->numAdj; j++) {
-                printf("[%d %d: %lf]-->", vArray[i]->AdjList[j]->origin, vArray[i]->AdjList[j]->destin, vArray[i]->AdjList[j]->weight);
+                printf("-->[%d %d: %.2lf]", vArray[i]->AdjList[j]->origin, vArray[i]->AdjList[j]->destin, vArray[i]->AdjList[j]->weight);
             }
             printf("\n");
         }
