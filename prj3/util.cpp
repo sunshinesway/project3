@@ -10,10 +10,20 @@
 #include "data_structures.h"
 
 void insertAdjList(VERTEX *vertex, NODE *edge, bool insertBegin) {
-
+    if(!insertBegin) {
+        vertex->numAdj++;
+        vertex->AdjList[vertex->numAdj] = edge;
+    }
+    else {
+        for(int i = vertex->numAdj; i > 0; i--) {
+            swap(vertex,i, i+1);
+        }
+        vertex->AdjList[1] = edge;
+        vertex->numAdj++;
+    }
 }
 
-HEAP* initArray(int cap) {
+HEAP* initHeapArray(int cap) {
     //allocate memory for single heap
     //return null with error if unsuccessful
     HEAP *heap = (HEAP *)calloc(1, sizeof(HEAP));
@@ -35,22 +45,57 @@ HEAP* initArray(int cap) {
     return heap;
 }
 
-
-void printArray(HEAP *heap) {
-    //base case if heap is null - error message
-    if(!heap) {
-        fprintf(stderr, "Error: heap is NULL");
+STACK* initStackArray(int cap) {
+    //allocate memory for single heap
+    //return null with error if unsuccessful
+    STACK *stack = (STACK *)calloc(1, sizeof(STACK));
+    if (!stack) {
+        fprintf(stderr, "Error: memory allocation failed for Heap\n");
+        return nullptr;
     }
-        //not NULL: print heap size, then each key value in ELEMENT A array
+    //set heap field values
+    stack->capacity = cap;
+    stack->size = 0;
+    //allocate memory for array of cap size
+    //deallocate heap memory and return null if array allocation unsuccessful
+    stack->S = (NODE **)calloc(cap, sizeof(NODE *));
+    if(!stack->S) {
+        fprintf(stderr, "Error: memory allocation failed for Stack Array\n");
+        free(stack);
+        return nullptr;
+    }
+    return stack;
+}
+
+
+void printAdjLists(VERTEX **vArray) {
+    //base case if heap is null - error message
+    if(!vArray[1]) {
+        fprintf(stderr, "Error: AdjList is NULL");
+    }
+        //not NULL: print
+        // ADJ[1]:-->[1 4: 5.00]-->[1 2: 10.00]
     else {
-        printf("%d\n", heap->size);
-        if(heap->size>0){
-            for(int i = 1; i <= heap->size; i++) {
-                printf("%lf\n", heap->A[i]->key);
+        int arrayLength = sizeof(vArray)/sizeof(VERTEX *);
+        for(int i = 1; i <= arrayLength; i++) {
+            printf("ADJ[%d]:-->:", i);
+            for(int j = 1; j <= vArray[i]->numAdj; j++) {
+                printf("[%d %d: %lf]-->", vArray[i]->AdjList[j]->origin, vArray[i]->AdjList[j]->destin, vArray[i]->AdjList[j]->weight);
             }
+            printf("\n");
         }
     }
 }
+
+void swap(VERTEX *vertex, int itemInd1, int itemInd2) {
+    //create temp NODE for swappin
+    NODE *temp = vertex->AdjList[itemInd1];
+    //do the swappin
+    vertex->AdjList[itemInd1] = vertex->AdjList[itemInd2];
+    vertex->AdjList[itemInd2] = temp;
+}
+
+/*
 
 void writeArray(HEAP *heap, FILE *outputFile) {
     //base case if heap is null - error message
@@ -125,14 +170,7 @@ void readIn(HEAP *heap, FILE *inputFile, int& count) {
 
 }
 
-void swap(HEAP *heap, int itemInd1, int itemInd2) {
 
-    //create temp element for swappin
-    ELEMENT *temp = heap->A[itemInd1];
-    //do the swappin
-    heap->A[itemInd1] = heap->A[itemInd2];
-    heap->A[itemInd2] = temp;
-}
 
 void freeMemory(HEAP *heap) {
     //deallocate each array element
@@ -144,3 +182,5 @@ void freeMemory(HEAP *heap) {
     //deallocate haep
     free(heap);
 }
+
+ */

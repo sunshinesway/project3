@@ -12,17 +12,23 @@ void insertAdjList(VERTEX *vertex, NODE *edge, bool insertBegin);
 * note:
 */
 
-HEAP* initArray(int cap);
+HEAP* initHeapArray(int cap);
 /*
 * input: integer capacity, from stdin command
 * output: HEAP struct, containing an array A of ELEMENTs
 * note:
 */
-void printArray(HEAP *heap);
+STACK* initStackArray(int cap);
 /*
- * input: pointer to HEAP struct
+* input: integer capacity, from stdin command
+* output: STACK struct, containing an array S of NODEs
+* note:
+*/
+void printAdjLists(VERTEX **vArray);
+/*
+ * input: pointer to VERTEX array
  * output: void return
- * note: FLAG ==0, prints array A in heap to stdout: size of array, then each element
+ * note:
  */
 void writeArray(HEAP *heap, FILE *outputFile);
 /*
@@ -40,12 +46,12 @@ void readIn(HEAP *heap, FILE *inputFile, int& count);
  * note: reads data from inputFile and designates first int as array size,
  *       then each following as an key for each ELEMENT in array
  */
-void swap(HEAP *heap, int itemInd1, int itemInd2);
+void swap(VERTEX *vertex, int itemInd1, int itemInd2);
 /*
- * input: pointer to HEAP struct AND
- *        TWO indexes to ELEMENTs in heap's array A
+ * input: pointer to VERTEX struct AND
+ *        TWO indexes to NODEs in vertex's array AdjList
  * output: void return
- * note: swaps position of ELEMENTs at 1 and 2
+ * note: swaps position of NODEs at 1 and 2
  */
 void freeMemory(HEAP *heap);
 /*

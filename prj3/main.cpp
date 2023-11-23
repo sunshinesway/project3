@@ -12,6 +12,7 @@ int main(int argc, char **argv) {
 
     //initialize files as NULL
     FILE *inputFile = nullptr;
+    FILE *outputFile = nullptr;
     char *graphType = argv[2];
     //pull in flag value from arguments
     int flag = std::stoi(argv[3]);
@@ -21,10 +22,7 @@ int main(int argc, char **argv) {
     bool graph = false;
     bool const insertBegin = true;
     int i;
-    int edgeIndex;
-    int origin;
-    int destin;
-    double weight;
+
 
     //directed: graph
     //undirected: !graph
@@ -47,7 +45,7 @@ int main(int argc, char **argv) {
     V = (ptVERTEX *)calloc(1, sizeof(ptVERTEX));
     //int *adjList = new int[numVertices];
 
-    for(i = 1; i <= numEdges; i++) {
+    for(i = 1; i <= numVertices; i++) {
         V[i] = (VERTEX *) calloc(1, sizeof(VERTEX));
         if (!V[i]) {
             fprintf(stderr, "Error: memory allocation failed for Vertex\n");
@@ -65,8 +63,11 @@ int main(int argc, char **argv) {
 
         fscanf(inputFile, "%d", &newEdge->index);
         fscanf(inputFile, "%d", &newEdge->origin);
+        int origin = newEdge->origin;
         fscanf(inputFile, "%d", &newEdge->destin);
+        int destin = newEdge->destin;
         fscanf(inputFile, "%lf", &newEdge->weight);
+        int weight = newEdge->weight;
 
         //DIRECTED GRAPH
         if(graph) {
@@ -83,98 +84,65 @@ int main(int argc, char **argv) {
         }
         //UNDIRECTED GRAPH
         else {
+            //create EDGE with reverse origin/destination to insert into destin VERTEX adjList
+            NODE *revEdge = (NODE *)malloc(sizeof(NODE));
+            revEdge->origin = newEdge->destin;
+            revEdge->destin = newEdge->origin;
+            revEdge->weight = newEdge->weight;
+            revEdge->index = newEdge->index;
+
             //IF FLAG 1
-            //insert EDGE at BEGINNING of BOTH V[origin] adjList & V[destin] adjList
+            //insert EDGE at BEGINNING of BOTH V[origin] adjList & the reverse to V[destin] adjList
             if (flag == 1) {
                 insertAdjList(V[newEdge->origin], newEdge, insertBegin);
-                insertAdjList(V[newEdge->destin], newEdge, insertBegin);
+                insertAdjList(V[newEdge->destin], revEdge, insertBegin);
             }
             //IF FLAG 2
-            //insert EDGE at END of BOTH V[origin] adjList & V[destin] adjList
+            //insert EDGE at END of BOTH V[origin] adjList & the reverse to V[destin] adjList
             else {
                 insertAdjList(V[newEdge->origin], newEdge, !insertBegin);
-                insertAdjList(V[newEdge->destin], newEdge, !insertBegin);
+                insertAdjList(V[newEdge->destin], revEdge, !insertBegin);
             }
         }
+
     }
+    fclose(inputFile);
+    //initialize HEAP pointer with capacity of numVertices
+    HEAP *heap = nullptr;
+    heap = initHeapArray(numVertices);
+
+    //initialize STACK pointer with capacity of numVertices
+    STACK *stack = nullptr;
+    stack = initStackArray(numVertices);
 
     while(1) {
         //scan in command
         fscanf(stdin, "%19s", command);
 
-        //end loop
+        //end while loop
         if(strcmp(command, "Stop")==0)
             break;
 
-        else if(strcmp(command, "Init")==0) {
-            fscanf(stdin, "%s", command);
-            capacity = std::atoi(command);
-            //if Init is being called AGAIN, free heap memory FIRST
-            if(heap) {
-                freeMemory(heap);
-            }
-            heap = initArray(capacity);
+        else if(strcmp(command, "PrintADJ")==0) {
+            printAdjLists(V);
         }
 
-        else if(strcmp(command, "Print")==0){
-            printArray(heap);
-        }
-
-        else if(strcmp(command, "Write")==0){
-            //open output file to write to, for WRITING
-            outputFile = fopen(argv[2],"w");
-            writeArray(heap, outputFile);
-        }
-
-        else if(strcmp(command, "Read")==0){
-            //open output file to read in, for READING
-            inputFile = fopen(argv[1], "r");
-            if(!inputFile) {
-                fprintf(stderr, "Error, file cannot be opened \n");
-                exit(1);
-            }
-            count = 0;
-            readIn(heap, inputFile, count);
-
-            //print heapifyCall count if flag=1 and heap is not empty
-            if(flag == 1 && heap->size > 0) {
-                printf("Number of Heapify calls: %d\n", count);
-            }
+        else if(strcmp(command, "SinglePair")==0){
 
         }
 
-        else if(strcmp(command, "Insert")==0){
-            //read Insert VALUE
-            fscanf(stdin, "%s", command);
-            //check IF heap array has space for addtl element
-            if(heap->size < heap->capacity) {
-                key = std::stod(command);
-                min_heap_insert(heap, key);
-            }
+        else if(strcmp(command, "SingleSource")==0){
+
         }
 
-        else if(strcmp(command, "ExtractMin")==0){
-            //check if heap is empty, NO ACTION if empty
-            if(heap->size>0) {
-                count = 0;
-                minimum = heap_extract_min(heap, count);
-                printf("%s%lf\n", "ExtractMin: ", minimum);
+        else if(strcmp(command, "PrintLength")==0){
 
-                if(flag == 1) {
-                    printf("Number of Heapify calls: %d\n", count);
-                }
-            }
         }
 
-        else if(strcmp(command, "DecreaseKey")==0){
-            //read position value
-            fscanf(stdin, "%s", command);
-            j = std::atoi(command);
-            //read new key value
-            fscanf(stdin, "%s", command);
-            double newKey = std::stod(command);
-            heap_decrease_key(heap, j, newKey);
+        else if(strcmp(command, "PrintPath")==0){
+
         }
+
         else {
             fprintf(stderr, "Warning: Invalid instruction\n");
         }
