@@ -14,7 +14,7 @@ typedef struct TAG_NODE {
 //typedef NODE *pNODE;
 
 typedef struct TAG_VERTEX {
-    int index;
+    int index = 0;
     //COLOR color;
     double key;
     int parent;
@@ -34,9 +34,8 @@ typedef struct TAG_HEAP {
 
 }HEAP;
 //typedef HEAP *pHEAP;
-
-typedef VERTEX ELEMENT;
-typedef ELEMENT *pELEMENT;
+//typedef VERTEX ELEMENT;
+//typedef ELEMENT *pELEMENT;
 
 
 

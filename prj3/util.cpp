@@ -36,7 +36,7 @@ HEAP* initHeapArray(int cap) {
     heap->size = 0;
     //allocate memory for array of cap size
     //deallocate heap memory and return null if array allocation unsuccessful
-    heap->A = (ELEMENT **)calloc(cap, sizeof(ELEMENT *));
+    heap->A = (VERTEX **)calloc(cap, sizeof(VERTEX *));
     if(!heap->A) {
         fprintf(stderr, "Error: memory allocation failed for Heap Array\n");
         free(heap);
@@ -71,7 +71,7 @@ STACK* initStackArray(int cap) {
 void printAdjLists(VERTEX **vArray, int numVert) {
     //base case if heap is null - error message
     if(!vArray[1]) {
-        fprintf(stderr, "Error: AdjList is NULL");
+        fprintf(stderr, "Error: Vertex Array is EMPTY");
     }
         //not NULL: print
         // ADJ[1]:-->[1 4: 5.00]-->[1 2: 10.00]

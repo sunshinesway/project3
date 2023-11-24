@@ -18,10 +18,12 @@ int main(int argc, char **argv) {
     int flag = std::stoi(argv[3]);
     char command[20];
     int numEdges;
-    int numVertices;
+    int numVertices = 0;
     bool graph = false;
     bool const insertBegin = true;
     int i;
+    int originInput;
+    int destinInput;
 
 
     //directed: graph
@@ -107,6 +109,7 @@ int main(int argc, char **argv) {
 
     }
     fclose(inputFile);
+
     //initialize HEAP pointer with capacity of numVertices
     HEAP *heap = nullptr;
     heap = initHeapArray(numVertices);
@@ -128,11 +131,18 @@ int main(int argc, char **argv) {
         }
 
         else if(strcmp(command, "SinglePair")==0){
+            //read source node, convert to int
+            fscanf(stdin, "%s", command);
+            originInput = std::stod(command);
+            //read destination node, convert to int
+            fscanf(stdin, "%s", command);
+            destinInput = std::stod(command);
 
         }
 
         else if(strcmp(command, "SingleSource")==0){
-
+            fscanf(stdin, "%s", command);
+            originInput = std::stod(command);
         }
 
         else if(strcmp(command, "PrintLength")==0){
