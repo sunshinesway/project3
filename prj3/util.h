@@ -53,6 +53,13 @@ void swap(VERTEX *vertex, int itemInd1, int itemInd2);
  * output: void return
  * note: swaps position of NODEs at 1 and 2
  */
+void swap(HEAP *heap, int itemInd1, int itemInd2);
+/*
+ * input: pointer to VERTEX struct AND
+ *        TWO indexes to NODEs in vertex's array AdjList
+ * output: void return
+ * note: swaps position of NODEs at 1 and 2
+ */
 void freeMemory(HEAP *heap);
 /*
 * input: pointer to HEAP struct

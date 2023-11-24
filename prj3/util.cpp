@@ -94,6 +94,14 @@ void swap(VERTEX *vertex, int itemInd1, int itemInd2) {
     vertex->AdjList[itemInd1] = vertex->AdjList[itemInd2];
     vertex->AdjList[itemInd2] = temp;
 }
+void swap(HEAP *heap, int itemInd1, int itemInd2) {
+
+    //create temp element for swappin
+    VERTEX *temp = heap->A[itemInd1];
+    //do the swappin
+    heap->A[itemInd1] = heap->A[itemInd2];
+    heap->A[itemInd2] = temp;
+}
 
 /*
 

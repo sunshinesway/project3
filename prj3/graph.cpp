@@ -12,8 +12,9 @@
 //approximation of infinity for double val
 double infinity = std::numeric_limits<double>::infinity();
 
-int Dijkstra(VERTEX **vArray, HEAP *heap, int source, int numVert) {
+int Dijkstra(VERTEX **vArray, HEAP *Qheap, int source, int numVert) {
     int i = 1;
+    double newKey;
     //initialize qArray with numVertices+1 elements to keep track of vertices to be checked
     //set all initial values to 0
 
@@ -24,13 +25,37 @@ int Dijkstra(VERTEX **vArray, HEAP *heap, int source, int numVert) {
     while(vArray[i]->index != 0) {
         vArray[i]->key = infinity;
         vArray[i]->parent = 0;
-
+        min_heap_insert(Qheap, vArray[i], vArray[i]->key);
         i++;
     }
     //set source distance from source to ZERO
-    vArray[source]->key = 0;
+    //update heapQ
+    heap_decrease_key(Qheap, source, 0);
 
-    while()
+    VERTEX *currentVert = (VERTEX *)malloc(sizeof(VERTEX));
+    VERTEX *adjVert = (VERTEX *)malloc(sizeof(VERTEX));
+
+    while(Qheap->size != 0) {
+        currentVert = Qheap->A[1];
+        heap_extract_min(Qheap);
+
+        for(int j = 1; j <= currentVert->numAdj; j++) {
+            adjVert = vArray[currentVert->AdjList[j]->destin];
+            for(int k = 1; k < Qheap->size; k++) {
+                if (adjVert->index != Qheap->A[k]->index) {
+                    continue;
+                }
+                else {
+                    newKey = currentVert->key + currentVert->AdjList[j]->weight;
+                    if(newKey < adjVert->key) {
+                        adjVert->key = newKey;
+                        adjVert->parent = currentVert->index;
+                    }
+                    break;
+                }
+            }
+        }
+    }
 
     return 0;
 }
