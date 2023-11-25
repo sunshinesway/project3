@@ -56,14 +56,18 @@ STACK* initStackArray(int cap) {
     //set heap field values
     stack->capacity = cap;
     stack->size = 0;
+
+    stack->top = (NODE *)calloc(1, sizeof(NODE));
+    stack->top = nullptr;
     //allocate memory for array of cap size
     //deallocate heap memory and return null if array allocation unsuccessful
+   /*
     stack->S = (NODE **)calloc(cap, sizeof(NODE *));
     if(!stack->S) {
         fprintf(stderr, "Error: memory allocation failed for Stack Array\n");
         free(stack);
         return nullptr;
-    }
+    } */
     return stack;
 }
 

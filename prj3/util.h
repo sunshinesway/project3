@@ -11,7 +11,6 @@ void insertAdjList(VERTEX *vertex, NODE *edge, bool insertBegin);
 * output:
 * note:
 */
-
 HEAP* initHeapArray(int cap);
 /*
 * input: integer capacity, from stdin command

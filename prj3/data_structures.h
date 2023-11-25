@@ -9,7 +9,7 @@ typedef struct TAG_NODE {
     int origin;
     int destin;
     double weight;
-    TAG_NODE *next;
+    //TAG_NODE *next;
 }NODE;
 //typedef NODE *pNODE;
 
@@ -19,6 +19,7 @@ typedef struct TAG_VERTEX {
     double key;
     int parent;
     int position;
+    TAG_VERTEX *next;
 
     int numAdj = 0;
     NODE** AdjList; //array of pointers to VERTEX's adjacent EDGES
@@ -29,6 +30,7 @@ typedef VERTEX *ptVERTEX;
 typedef struct TAG_HEAP {
     int capacity; /* capacity of the heap */
     int size; /* current size of the heap */
+
 
     VERTEX** A; /* array of pointers to ELEMENT */
 
@@ -43,11 +45,11 @@ typedef struct TAG_STACK{
     int capacity;
     int size;
 
-    TAG_NODE *source;
-    TAG_NODE *destination;
+    TAG_VERTEX *top;
 
-    NODE** S; /* array of pointers to EDGES */
+    //NODE** S; /* array of pointers to EDGES */
 
 }STACK;
+
 
 #endif

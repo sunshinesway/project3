@@ -9,6 +9,7 @@
 #include <cfloat>
 #include "heap.h"
 #include "graph.h"
+#include "stack.h"
 
 int main(int argc, char **argv) {
 
@@ -186,7 +187,15 @@ int main(int argc, char **argv) {
                 fprintf(stdout, "There is no path from %d to %d.\n", originInput, destinInputP);
             }
             else {
+                fprintf(stdout, "The shortest path from %d to %d is:\n", originInput, destinInputP);
 
+                push(stack, V[destinInputP]);
+                int parent = V[destinInputP]->parent;
+                while(1) {
+                    push(stack, V[parent]);
+                    parent = V[parent]->parent;
+                    
+                }
             }
         }
 
