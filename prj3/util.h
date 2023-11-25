@@ -17,7 +17,7 @@ HEAP* initHeapArray(int cap);
 * output: HEAP struct, containing an array A of ELEMENTs
 * note:
 */
-STACK* initStackArray(int cap);
+STACK* initStack(int cap);
 /*
 * input: integer capacity, from stdin command
 * output: STACK struct, containing an array S of NODEs

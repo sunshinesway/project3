@@ -45,7 +45,7 @@ HEAP* initHeapArray(int cap) {
     return heap;
 }
 
-STACK* initStackArray(int cap) {
+STACK* initStack(int cap) {
     //allocate memory for single heap
     //return null with error if unsuccessful
     STACK *stack = (STACK *)calloc(1, sizeof(STACK));
@@ -57,7 +57,7 @@ STACK* initStackArray(int cap) {
     stack->capacity = cap;
     stack->size = 0;
 
-    stack->top = (NODE *)calloc(1, sizeof(NODE));
+    stack->top = (VERTEX *)calloc(1, sizeof(VERTEX));
     stack->top = nullptr;
     //allocate memory for array of cap size
     //deallocate heap memory and return null if array allocation unsuccessful

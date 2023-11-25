@@ -121,7 +121,7 @@ int main(int argc, char **argv) {
 
     //initialize STACK pointer with capacity of numVertices
     STACK *stack = nullptr;
-    stack = initStackArray(numVertices);
+    stack = initStack(numVertices);
 
     while(1) {
         //scan in command
@@ -194,7 +194,14 @@ int main(int argc, char **argv) {
                 while(1) {
                     push(stack, V[parent]);
                     parent = V[parent]->parent;
-                    
+                    if(parent == 0) {
+                        break;
+                    }
+                }
+                fprintf(stdout, "[%d:    0.00]", originInput);
+                while(stack->size >0) {
+                    fprintf(stdout, "-->[%d:    %.2lf]", stack->top->index, stack->top->key);
+                    pop();
                 }
             }
         }

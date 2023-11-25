@@ -16,8 +16,15 @@ void push(STACK *stack, VERTEX *vertex) {
 
     newVertex->next = stack->top;
     stack->top = newVertex;
+    stack->size++;
 }
 
-void pop() {
-
+void pop(STACK *stack) {
+    if(stack->top == NULL) {
+        fprintf(stdout, "Stack Underflow");
+    }
+    else {
+        stack->top = stack->top->next;
+        stack->size--;
+    }
 }
