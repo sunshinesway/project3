@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "util.h"
+#include <cfloat>
 #include "heap.h"
+#include "graph.h"
 
 int main(int argc, char **argv) {
 
@@ -24,6 +26,8 @@ int main(int argc, char **argv) {
     int i;
     int originInput;
     int destinInput;
+    int originInputP;
+    int destinInputP;
 
 
     //directed: graph
@@ -138,11 +142,15 @@ int main(int argc, char **argv) {
             fscanf(stdin, "%s", command);
             destinInput = std::stod(command);
 
+            dijkstra(V, heap, originInput, destinInput);
         }
 
         else if(strcmp(command, "SingleSource")==0){
             fscanf(stdin, "%s", command);
             originInput = std::stod(command);
+            destinInput = 0;
+
+            dijkstra(V, heap, originInput, 0);
         }
 
         else if(strcmp(command, "PrintLength")==0){
@@ -150,7 +158,19 @@ int main(int argc, char **argv) {
         }
 
         else if(strcmp(command, "PrintPath")==0){
+            //read source node, convert to int
+            fscanf(stdin, "%s", command);
+            originInput = std::stod(command);
+            //read destination node, convert to int
+            fscanf(stdin, "%s", command);
+            destinInputP = std::stod(command);
 
+            if(V[originInput]->key != 0 || destinInputP != destinInput) {
+                fprintf(stdout, "There is no path from <s> to <t>.\n");
+            }
+            else {
+
+            }
         }
 
         else {
