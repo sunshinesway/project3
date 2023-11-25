@@ -4,7 +4,7 @@
 #define heap_h
 #include "data_structures.h"
 
-void min_heapify(HEAP *heap, int elementIndex, int& count);
+void min_heapify(HEAP *heap, int elementIndex);
 /*
  * input: HEAP struct, containing array A of ELEMENT structs, AND
  *        index of element to heapify in minheap, AND
@@ -12,14 +12,14 @@ void min_heapify(HEAP *heap, int elementIndex, int& count);
  * output: void return
  * note: purpose to recursively update minheap element-by-element
  */
-void build_min_heap(HEAP *heap, int& count);
+void build_min_heap(HEAP *heap);
 /*
  * input: HEAP struct, containing array A of ELEMENT structs, AND
  *        reference to heapify count int variable
  * output: void return
  * note: creates minheap of doubles from array. Calls min_heapify
  */
-double heap_extract_min(HEAP *heap, int& count);
+double heap_extract_min(HEAP *heap);
 /*
  * input: HEAP struct, containing array A of ELEMENT structs, AND
  *        reference to heapify count int variable
@@ -33,9 +33,9 @@ void heap_decrease_key(HEAP *heap, int elem, double key);
  *        key value to update for ELEMENT
  * output: void return
  * note: updates key value of an ELEMENT in array. SWAPs parent elements as
- *       needed to maintain haep
+ *       needed to maintain heap
  */
-void min_heap_insert(HEAP *heap, double key);
+void min_heap_insert(HEAP *heap, VERTEX *vertex, double key);
 /*
  * input: HEAP struct, containing array A of ELEMENT structs AND
  *        key value for new ELEMENT in array
