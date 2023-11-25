@@ -152,11 +152,28 @@ int main(int argc, char **argv) {
 
             dijkstra(V, heap, originInput, 0);
         }
-
+        /*
+         *  The length of the shortest path from 1 to 5 is:     7.00
+         */
         else if(strcmp(command, "PrintLength")==0){
+            //read source node, convert to int
+            fscanf(stdin, "%s", command);
+            originInput = std::stod(command);
+            //read destination node, convert to int
+            fscanf(stdin, "%s", command);
+            destinInputP = std::stod(command);
 
+            if(V[originInput]->key != 0 || destinInputP != destinInput) {
+                fprintf(stdout, "There is no path from %d to %d.\n", originInput, destinInputP);
+            }
+            else {
+                fprintf(stdout, "The length of the shortest path from %d to %d is:     %.2lf\n", originInput, destinInputP, V[destinInputP]->key);
+            }
         }
-
+        /*
+         *  The shortest path from 1 to 3 is:
+            [1:    0.00]-->[4:    5.00]-->[2:    8.00]-->[3:    9.00].
+         */
         else if(strcmp(command, "PrintPath")==0){
             //read source node, convert to int
             fscanf(stdin, "%s", command);
@@ -166,7 +183,7 @@ int main(int argc, char **argv) {
             destinInputP = std::stod(command);
 
             if(V[originInput]->key != 0 || destinInputP != destinInput) {
-                fprintf(stdout, "There is no path from <s> to <t>.\n");
+                fprintf(stdout, "There is no path from %d to %d.\n", originInput, destinInputP);
             }
             else {
 
